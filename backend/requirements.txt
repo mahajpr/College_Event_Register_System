@@ -1,0 +1,14 @@
+fastapi
+uvicorn
+sqlalchemy
+pydantic
+python-dotenv
+qrcode
+pillow
+gspread
+oauth2client
+sentence-transformers
+faiss-cpu
+numpy
+groq
+pypdf
