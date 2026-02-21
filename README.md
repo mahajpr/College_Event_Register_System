@@ -1,63 +1,71 @@
-College Event Registration & Management System
+ 🎓 College Event Registration & Management System
 
-A full-stack event management platform that allows students to register for college events and receive automated confirmations.
-Built using FastAPI, Streamlit, SQLite
+An AI-enabled full-stack event management platform that allows students to register for college events and receive automated confirmations. Built using FastAPI, Streamlit, and SQLite. This system simulates a  institutional event platform with registration, admin dashboard, chat assistant, email notifications, and optional RAG support.
 
-This system simulates a real institutional event platform with registration, admin dashboard, chat assistant, email notifications, and optional RAG support.
+ 🚀 Features
 
-🚀 Features:
-👩‍🎓 Student Features:
-Register for events
-View available events
-Real-time confirmation
-Chat support system
-QR code generation for entry
-Email confirmation
+ 👩‍🎓 Student Features
 
-🛠 Admin Features:
-Create/manage events
-View registrations
-Monitor participants
-Admin dashboard
-Export or sync data (Sheets integration)
+* Register for events
+* View available events
+* Real-time confirmation
+* Chat support system
+* QR code generation for entry
+* Email confirmation
 
-🤖 AI / Smart Features:
-Chat assistant system
-Retrieval-based responses (RAG module)
-Rule-based automation
-Email automation
-Google Sheets sync
+ 🛠 Admin Features
 
-🧠 System Architecture:
+* Create/manage events
+* View registrations
+* Monitor participants
+* Admin dashboard
+* Google Sheets sync
 
-Student UI → FastAPI Backend → Services Layer → Database
+ 🤖 AI / Smart Features
+
+* Chat assistant system
+* Retrieval-based responses (RAG)
+* Rule-based automation
+* Email automation
+* Sheets integration
+
+ 🧠 Architecture
+
+User → Streamlit UI → FastAPI Backend → Services → Database
 ↘ Chat/RAG
 ↘ Email
 ↘ Sheets
 
-🛠 Tech Stack:
-Backend:
-FastAPI
-Python
-SQLAlchemy
-SQLite
+ 🛠 Tech Stack
 
-Frontend:
-Streamlit
-AI / Automation
-RAG module
-Rule-based chat
-Email automation
-Integrations
-Google Sheets API
-QR generation
-SMTP Email
+**Backend**
 
-📁 Project Structure:
+* FastAPI
+* Python
+* SQLAlchemy
+* SQLite
+
+**Frontend**
+
+* Streamlit
+
+**AI / Automation**
+
+* RAG module
+* Rule-based chat
+* Email automation
+
+**Integrations**
+
+* Google Sheets API
+* QR generation
+* SMTP Email
+
+ 📁 Project Structure
+
 college-event-registration-system/
 │
 ├── backend/
-│   │
 │   ├── main.py
 │   ├── requirements.txt
 │   ├── events.db
@@ -92,85 +100,69 @@ college-event-registration-system/
 ├── .gitignore
 └── README.md
 
-⚙️ Setup Instructions:
+ ⚙️ Setup
 
-1️⃣ Clone Repository
+ Clone repository
+
 git clone https://github.com/YOUR_USERNAME/college-event-registration.git
 cd college-event-registration
 
-2️⃣ Create Virtual Environment
+ Create virtual environment
+
 python -m venv venv
 venv\Scripts\activate
 
-3️⃣ Install Dependencies
+ Install dependencies
+
 pip install fastapi uvicorn streamlit sqlalchemy pydantic requests
 
-▶️ Run Backend:
+ ▶️ Run Backend
+
 cd backend
 uvicorn main:app --reload
 
-Backend URL:
+Backend: http://localhost:8000
+Docs: http://localhost:8000/docs
 
-http://localhost:8000
-
-Swagger Docs:
-
-http://localhost:8000/docs
-
-▶️ Run Frontend:
-
-Open new terminal:
+ ▶️ Run Frontend
 
 cd frontend
-streamlit run app.py
+streamlit run student_app.py
 
-Frontend URL:
+Admin dashboard:
+streamlit run admin_dashboard.py
 
-http://localhost:8501
+ 📡 API Endpoints
 
-📡 API Endpoints
-Get all events:
 GET /events
-
-Add new event:
 POST /events
-
-Register student:
 POST /register
+POST /login
+POST /chat
 
-Login:
-POST/login
+ 🧠 How It Works
 
-🧠 How it Works:
+1. Student opens Streamlit UI
+2. Events fetched from FastAPI
+3. Student registers
+4. Data stored in SQLite
+5. Email + QR generated
+6. Admin monitors dashboard
 
-Student opens Streamlit app
-Fetches events from FastAPI
-Student fills registration form
-Data sent to FastAPI backend
-Stored in SQLite database
-Admin can view all registrations
+ 📊 Dataset
 
-📊 Dataset
+No external dataset used. All data generated internally. Includes student registrations, events, chat messages, and admin activity. Stored in SQLite for demo use.
 
-This project does not use external datasets.
-All data is generated internally.
+ 🔒 Ethics & Privacy
 
-Includes:
-Student registration data
-Event details
-Chat messages
-Admin activity
-Stored in SQLite for demo purposes.
+* Educational project
+* Stores only basic user data
+* No third-party sharing
+* Chat stored locally
+* Avoid sensitive info
+* Can add authentication & encryption
 
-🔒 Ethics & Privacy:
-Built for educational use
-Stores only basic user data
-No third-party data sharing
-Chat data stored locally
-Avoid entering sensitive data
-Can be extended with encryption & auth
+Focus on privacy, transparency, and responsible data handling.
 
-Focus:
-Responsible data handling
-Transparency
-Privacy awareness
+
+
