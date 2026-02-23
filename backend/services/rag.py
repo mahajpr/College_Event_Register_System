@@ -29,25 +29,23 @@ def get_index():
 
     if index is not None:
         return index, chunks
-BASE_DIR = os.path.dirname(os.path.dirname(__file__))
-RULES_PATH = os.path.join(BASE_DIR, "services", "rules.txt")
 
-with open(RULES_PATH, "r", encoding="utf-8") as f:
-    text = f.read()
+    BASE_DIR = os.path.dirname(os.path.dirname(__file__))
+    RULES_PATH = os.path.join(BASE_DIR, "services", "rules.txt")
 
+    with open(RULES_PATH, "r", encoding="utf-8") as f:
+        text = f.read()
 
-chunks = [c.strip() for c in text.split("\n\n") if c.strip()]
+    chunks = [c.strip() for c in text.split("\n\n") if c.strip()]
 
-model = get_model()
-embeddings = model.encode(chunks)
+    model = get_model()
+    embeddings = model.encode(chunks)
 
-embeddings = model.encode(chunks)
-dim = embeddings.shape[1]
+    dim = embeddings.shape[1]
+    index = faiss.IndexFlatL2(dim)
+    index.add(np.array(embeddings))
 
-index = faiss.IndexFlatL2(dim)
-index.add(np.array(embeddings))
-
-return index,chunks
+    return index, chunks  
 
 def retrieve_context(query, top_k=3):
     index, chunks = get_index()
