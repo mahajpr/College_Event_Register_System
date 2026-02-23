@@ -7,4 +7,5 @@ qrcode
 pillow
 gspread
 oauth2client
+python-jose
 
