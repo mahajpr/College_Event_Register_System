@@ -9,4 +9,4 @@ gspread
 oauth2client
 python-jose
 groq
-
+numpy
