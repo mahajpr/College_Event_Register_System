@@ -7,8 +7,4 @@ qrcode
 pillow
 gspread
 oauth2client
-sentence-transformers
-faiss-cpu
-numpy
-groq
-pypdf
+
