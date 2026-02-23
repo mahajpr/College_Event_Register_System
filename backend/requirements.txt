@@ -8,4 +8,7 @@ pillow
 gspread
 oauth2client
 python-jose
-
+sentence-transformers
+faiss-cpu
+groq
+numpy

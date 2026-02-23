@@ -1,7 +1,3 @@
-
-
-from sentence_transformers import SentenceTransformer
-import faiss
 import numpy as np
 import os
 from fastapi import APIRouter
@@ -13,12 +9,26 @@ router = APIRouter()
 API_KEY = os.getenv("GROQ_API_KEY")
 client = Groq(api_key=API_KEY)
 
-model = SentenceTransformer("all-MiniLM-L6-v2")
+model = None
+index= None
+chunks = None
 
 class ChatRequest(BaseModel):
     query: str
 
+def get_model():
+    global model
+    if model is None:
+        from sentence_transformers import SentenceTransformer
+        model = SentenceTransformer("all-MiniLM-L6-v2")
+    return model
 
+
+def get_index():
+    global index, chunks
+
+    if index is not None:
+        return index, chunks
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 RULES_PATH = os.path.join(BASE_DIR, "services", "rules.txt")
 
@@ -28,7 +38,8 @@ with open(RULES_PATH, "r", encoding="utf-8") as f:
 
 chunks = [c.strip() for c in text.split("\n\n") if c.strip()]
 
-
+model = get_model()
+embeddings = model.encode(chunks)
 
 embeddings = model.encode(chunks)
 dim = embeddings.shape[1]
@@ -36,9 +47,13 @@ dim = embeddings.shape[1]
 index = faiss.IndexFlatL2(dim)
 index.add(np.array(embeddings))
 
+return index,chunks
 
 def retrieve_context(query, top_k=3):
+    index, chunks = get_index()
+    model = get_model()
     q_emb = model.encode([query])
+
     D, I = index.search(np.array(q_emb), top_k)
 
     results = []
