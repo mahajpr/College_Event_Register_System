@@ -37,7 +37,7 @@ def get_events(db:Session = Depends(get_db)):
 def login(data:LoginIn ,  db: Session = Depends(get_db)):
     user = db.query(User).filter(User.email == data.email).first()
 
-    if not user or not verify_password(data.password , user.password)
+    if not user or not verify_password(data.password , user.password):
        raise HTTPException(status_code=401, detail="Invalid credentials")
     token = create_access_token({
         "email": user.email,
