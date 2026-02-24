@@ -73,7 +73,8 @@ try:
         raise Exception("GOOGLE_CREDENTIALS not set")
 
     creds_dict = json.loads(creds_json)
-    creds = ServiceAccountCredentials.from_json_keyfile_name(creds_dict, scope)
+    
+    creds = ServiceAccountCredentials.from_json_keyfile_dict(creds_dict, scope)
     client = gspread.authorize(creds)
 
     sheet = client.open("College Event Registrations").sheet1
