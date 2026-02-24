@@ -67,11 +67,12 @@ try:
         "https://spreadsheets.google.com/feeds",
         "https://www.googleapis.com/auth/drive"
     ]
+    if not creds_json:
+    raise Exception("GOOGLE_CREDENTIALS not set")
 
-    BASE_DIR = os.path.dirname(os.path.abspath(__file__))
     creds_json = os.getenv("GOOGLE_CREDENTIALS")
     creds_dict = json.loads(creds_json)
-    creds = ServiceAccountCredentials.from_json_keyfile_name(cred_path, scope)
+    creds = ServiceAccountCredentials.from_json_keyfile_name(cred_dict, scope)
     client = gspread.authorize(creds)
 
     sheet = client.open("College Event Registrations").sheet1
