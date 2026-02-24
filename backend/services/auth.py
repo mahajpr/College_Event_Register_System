@@ -11,7 +11,7 @@ ACCESS_TOKEN_EXPIRE_HOURS = 2
 
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="login")
 
-pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
+pwd_context = CryptContext(schemes=["pbkdf2_sha256"], deprecated="auto")
 
 
 def hash_password(password: str):
