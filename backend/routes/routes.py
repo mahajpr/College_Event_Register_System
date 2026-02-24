@@ -25,7 +25,10 @@ def register (data:RegisterIn , db:Session = Depends(get_db)):
         data.team_name,
         data.team_size
     ])
-    send_confirmation_email(data.email , data.name ,data.event)
+    try:
+        send_confirmation_email(data.email , data.name ,data.event)
+    except Exception as e:
+        print("Email failed:" , e)
     return {"msg":"Registration & email sent"}
 
 
