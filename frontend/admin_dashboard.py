@@ -68,7 +68,7 @@ try:
         "https://www.googleapis.com/auth/drive"
     ]
     if not creds_json:
-    raise Exception("GOOGLE_CREDENTIALS not set")
+        raise Exception("GOOGLE_CREDENTIALS not set")
 
     creds_json = os.getenv("GOOGLE_CREDENTIALS")
     creds_dict = json.loads(creds_json)
