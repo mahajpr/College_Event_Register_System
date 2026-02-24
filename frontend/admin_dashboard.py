@@ -67,10 +67,10 @@ try:
         "https://spreadsheets.google.com/feeds",
         "https://www.googleapis.com/auth/drive"
     ]
+    creds_json = os.getenv("GOOGLE_CREDENTIALS")
     if not creds_json:
         raise Exception("GOOGLE_CREDENTIALS not set")
-
-    creds_json = os.getenv("GOOGLE_CREDENTIALS")
+        
     creds_dict = json.loads(creds_json)
     creds = ServiceAccountCredentials.from_json_keyfile_name(cred_dict, scope)
     client = gspread.authorize(creds)
