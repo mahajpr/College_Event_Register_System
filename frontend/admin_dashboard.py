@@ -1,6 +1,7 @@
 
 import streamlit as st
 import os
+import json
 import requests
 import pandas as pd
 import gspread
@@ -68,8 +69,8 @@ try:
     ]
 
     BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-    cred_path = os.path.join(BASE_DIR, "..", "backend", "credentials.json")
-
+    creds_json = os.getenv("GOOGLE_CREDENTIALS")
+    creds_dict = json.loads(creds_json)
     creds = ServiceAccountCredentials.from_json_keyfile_name(cred_path, scope)
     client = gspread.authorize(creds)
 
