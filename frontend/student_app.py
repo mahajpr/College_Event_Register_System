@@ -17,7 +17,7 @@ event_list = []
 event_data = {}
 
 try:
-    res = requests.get("https://collegeeventregistersystem-production.up.railway.app/events")
+    res = requests.get("https://collegeeventregistersystem-production.up.railway.app//events")
     if res.status_code == 200:
         events = res.json()
 
