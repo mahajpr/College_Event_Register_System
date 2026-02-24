@@ -31,7 +31,7 @@ if "token" not in st.session_state:
 
     st.stop()
 
-headers = {"Authorization": f"Bearer{st.session_state.token}"}
+headers = {"Authorization": f"Bearer {st.session_state.token}"}
 
 st.header("📅 Create Event")
 
