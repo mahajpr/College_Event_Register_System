@@ -19,7 +19,6 @@ class ChatRequest(BaseModel):
 def get_model():
     global model
     if model is None:
-        from sentence_transformers import SentenceTransformer
         model = SentenceTransformer("all-MiniLM-L6-v2")
     return model
 
@@ -97,13 +96,10 @@ Question:
     return completion.choices[0].message.content
 
 
-
 def rag_chat(query):
     context = retrieve_context(query)
     answer = generate_answer(query, context)
-
     return answer
-
 
 
 @router.post("/chat")
