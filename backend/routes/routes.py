@@ -5,7 +5,7 @@ from database.deps import get_db
 from sqlalchemy.orm import Session
 from typing import List
 from services.data import new_register , events_get , require_role
-from services.auth import create_access_token 
+from services.auth import create_access_token , verify_password
 from services.email_service import send_confirmation_email
 from sheets import save_to_sheet
 
@@ -37,7 +37,7 @@ def get_events(db:Session = Depends(get_db)):
 def login(data:LoginIn ,  db: Session = Depends(get_db)):
     user = db.query(User).filter(User.email == data.email).first()
 
-    if not user or user.password  != data.password:
+    if not user or not verify_password(data.password , user.password)
        raise HTTPException(status_code=401, detail="Invalid credentials")
     token = create_access_token({
         "email": user.email,
