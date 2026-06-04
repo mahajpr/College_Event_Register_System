@@ -9,7 +9,7 @@ st.set_page_config(
     layout="wide"
 )
 
-st.title("🎓 Inter-College Technical Fest 2026")
+st.title("Inter-College Technical Fest 2026")
 st.markdown("### Student Event Registration Form")
 st.divider()
 
@@ -33,7 +33,7 @@ except:
     st.error("Backend not running")
 
 
-st.subheader("👤 Personal Details")
+st.subheader(" Personal Details")
 
 col1, col2 = st.columns(2)
 
@@ -50,14 +50,14 @@ with col2:
 st.divider()
 
 
-st.subheader("🏫 College Details")
+st.subheader("College Details")
 college = st.text_input("College *")
 city = st.text_input("City")
 
 st.divider()
 
 
-st.subheader("🎯 Event Selection")
+st.subheader(" Event Selection")
 
 event = None
 
@@ -88,7 +88,7 @@ if team_event:
 st.divider()
 
 consent = st.checkbox("I confirm details are correct")
-submit = st.button("🚀 Register")
+submit = st.button(" Register")
 
 
 if submit:
@@ -117,7 +117,7 @@ if submit:
         res = requests.post("http://127.0.0.1:8000/register", json=payload)
 
         if res.status_code == 200:
-            st.success("🎉 Registered successfully!")
+            st.success("Registered successfully!")
             st.balloons()
         else:
             st.error(res.text)
@@ -133,7 +133,7 @@ if "messages" not in st.session_state:
     st.session_state.messages = []
 
 
-if st.button("💬 Chat Assistant", key="chat_btn"):
+if st.button("Chat Assistant", key="chat_btn"):
     st.session_state.chat_open = not st.session_state.chat_open
 
 
@@ -141,7 +141,7 @@ if st.session_state.chat_open:
 
     st.markdown('<div class="chat-box">', unsafe_allow_html=True)
 
-    st.markdown("### 🤖 Fest Assistant")
+    st.markdown("### Fest Assistant")
 
     user_input = st.text_input("Ask about rules...", key="chat_input")
 
@@ -157,8 +157,8 @@ if st.session_state.chat_open:
 
     for sender, msg in st.session_state.messages:
         if sender == "You":
-            st.markdown(f"**🧑 {msg}**")
+            st.markdown(f"**{msg}**")
         else:
-            st.markdown(f"**🤖 {msg}**")
+            st.markdown(f"** {msg}**")
 
     st.markdown('</div>', unsafe_allow_html=True)
