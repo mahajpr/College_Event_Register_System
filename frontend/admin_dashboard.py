@@ -34,7 +34,7 @@ if "token" not in st.session_state:
 
 headers = {"Authorization": f"Bearer {st.session_state.token}"}
 
-st.header("📅 Create Event")
+st.header(" Create Event")
 
 with st.form("event_form"):
     title = st.text_input("Title")
@@ -60,7 +60,7 @@ with st.form("event_form"):
 
 st.divider()
 
-st.header("📊 Registrations (Google Sheet)")
+st.header(" Registrations (Google Sheet)")
 
 try:
     scope = [
